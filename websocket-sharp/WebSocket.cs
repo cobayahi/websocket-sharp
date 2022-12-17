@@ -159,7 +159,7 @@ namespace WebSocketSharp
       _maxRetryCountForConnect = 10;
       EmptyBytes = new byte[0];
       FragmentLength = 1016;
-      RandomNumber = new RNGCryptoServiceProvider ();
+      RandomNumber = RandomNumberGenerator.Create ();
     }
 
     #endregion
@@ -2506,7 +2506,7 @@ namespace WebSocketSharp
 
     internal static string CreateResponseKey (string base64Key)
     {
-      SHA1 sha1 = new SHA1CryptoServiceProvider ();
+      SHA1 sha1 = SHA1.Create ();
 
       var data = base64Key + _guid;
       var bytes = data.GetUTF8EncodedBytes ();
