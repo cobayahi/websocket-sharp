@@ -232,9 +232,9 @@ namespace WebSocketSharp.Net
 
         if (File.Exists (cer) && File.Exists (key)) {
           var cert = new X509Certificate2 (cer);
-          cert.PrivateKey = createRSAFromFile (key);
+          var rsa = createRSAFromFile (key);
 
-          return cert;
+          return cert.CopyWithPrivateKey(rsa);
         }
       }
       catch {
